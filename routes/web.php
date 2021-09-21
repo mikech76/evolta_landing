@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\HistoryActivityController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/about', [IndexController::class, 'about']);
+
+Route::get('/admin/activity', [HistoryActivityController::class, 'index'])
+    ->middleware('auth.basic.once');
